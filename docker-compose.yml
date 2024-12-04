@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  config-server:
+    build:
+      context: .  # The build context is the current directory
+      dockerfile: Dockerfile  # Ensure this points to the correct Dockerfile
+    image: config-server  # Name the image you want to create
+    env_file:
+      - .env  # Load environment variables from the .env file
+    volumes:
+      - "./.env:/app/.env"  # Optionally map the .env file into the container
+    ports:
+      - "8080:8080"  # Map container port to host port
+    environment:
+      ENV_FILE: "/app/.env"  # Optionally define an environment variable for the .env file location
